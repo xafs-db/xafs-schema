@@ -1,0 +1,81 @@
+# measurement Hardware例題集
+# @measurement@detectors 以下の配列で定義
+
+measurement: 
+  detectors:
+# IC 
+  - name: I0
+    arrangement: IC//...
+    hardware:
+      type: IC
+      manufacturer: OHYO KOKEN KOGYO CO., LTD.
+      model_number: 18cm
+      gases_number: 2
+      gases:
+      - name: N2
+        proportion: 50
+      - name: Ar
+        proportion: 50
+      applied_voltage: 1500
+      applied_voltage_unit: V
+
+# TEY
+  - name: TEY
+    arrangement: TEY//...
+    hardware:
+      type: TEY
+      manufacturer: 
+      model_number: 
+      drain:
+        type: mirror    #(mirror/mesh, )
+      coating_material: Ni    #(Ni/Au/, )
+      aperture_ratio: 89
+      aperture_ratio_unit: '%'
+
+# PEY
+  - name: PEY
+    arrangement: PEY//...
+    hardware:
+      type: PEY
+      manufacturer: 
+      model_number: 
+      applied_voltage_front: 10
+      applied_voltage_front_unit: V
+      applied_voltage_rear: 100
+      applied_voltage_rear_unit: V
+      battery_box_voltage: 200
+      battery_box_voltage_unit: V
+      deflection_voltage: 50
+      deflection_voltage_unit: V
+      retarding_voltage: 15
+      retarding_voltage_unit: V
+
+# PFY
+  - name: PFY//...
+    hardware:
+      type: PEY
+      manufacturer: 
+      model_number: 
+      device_number_total: 19
+      applied_voltages:    #素子の数だけapplied_volatageがある
+      - applied_voltage: 500
+        applied_voltage_unit: V
+        device: 1
+      - applied_voltage: 400
+        applied_voltage_unit: V
+        device: 2
+
+# ダイオードアレイ(1D), 2D CCD
+  - name: 2D-cCD
+    arrangement: 2D-CCD//...
+    hardware:
+      type: 2D-CCD
+      manufacturer: 
+      model_number: 
+      dimension: 2
+      device_number_total: 1048576
+      device_number_1: 1024
+      device_number_2: 1024
+      applied_voltages:
+      - applied_voltage: 1000
+        applied_voltage_unit: V

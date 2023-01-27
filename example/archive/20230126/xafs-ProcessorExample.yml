@@ -1,0 +1,59 @@
+# measurement processing_line processor例題集
+# @measurement@detectors 以下の配列で定義する
+
+measurement: 
+  detectors:
+
+# amp類
+  - name: Current Amp.
+    arrangement: ...//Current Amp.//..
+    processing_lines:
+    - conversion_factor: 1e8    # Conversion from instrument output to photon counts (per line)
+      conversion_factor_unit: /pA
+      processors:
+      - processor: Current Amp.    # Module (processor) used in each step of signal processing
+        type: Average
+        gain: 1e6
+        gain_unit: V/A
+        time_constant: 1e-3
+        time_constant_unit: s
+
+# spectroscopy-amp, DSP
+  - name: spectroscopy-amp
+    arrangement: ...//spectroscopy-amp//..
+    processing_lines:
+    - conversion_factor: 1e8    # Conversion from instrument output to photon counts (per line)
+      conversion_factor_unit: /V
+      processors:
+      - processor: spectroscopy-amp
+        shaping_parameter:
+          peaking_time: 0.5e-6
+          peaking_time_unit: s
+          through_rate: 1e-9
+          through_rate_unit: s/V
+          rising_time:
+          rising_time_unit:
+          fast_process_peaking_time:
+          slow_process_peaking_time:
+#               ... (以下適宜追加）
+        ROI:
+          lower_limit: 6.50
+          upper_limit: 7.50
+          unit: keV
+        deadtime:
+          value: 15.0
+          unit: "%"
+          set_at:
+            energy: 1567.71
+            unit: eV
+
+# am-mater （プリアンプ的に使う場合）
+  - name: am-mater
+    arrangement: ...//am-mater//..
+    processing_lines:
+    - conversion_factor:  1e8    # Conversion from instrument output to photon counts (per line)
+      conversion_factor_unit: /A
+      processors:
+      - processor: am-mater
+        full_scale: 0.2
+        full_scale_unit: mA

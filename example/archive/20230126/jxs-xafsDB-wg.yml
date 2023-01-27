@@ -1,0 +1,352 @@
+data_info:
+  data_depositor:
+    organization: Ritsumeikan
+    affiliation: Institute for Catalysis
+    name: Taro KEK
+    role: analyst #(analyst, manager,  director)
+  contact_name:
+    organization: Ritsumeikan
+    affiliation: Ritsumeikan SR center
+    name: Jiro Hokudai
+    role: responsible #(contractor, principal investigator, head of the institution)
+  access_rights: open
+  license: CC-BY-NC-SA
+  deposite_date:
+    create_time: "2022-12-04"
+    update_time: "2022-12-05" # revision date
+  title: XAFS measurement of Cu # title for "work"
+  title_ja: CuのXAFS測定
+  identifier:
+    pid: spring8.7e55cc2d-e93e-421f-8d71-6d4bfe9cc339 # facility-specific
+    proposal_number: 2014S0000 # facility-specific, Proposal No. etc.
+    register_name: /SPring-8/BL14B2/XAFS_Standard/Ag/K/111/Ag2CrO4 # facility-specific
+  related_ids:
+    - id: spring8.7e55cc2d-e93e-421f-8d71-6d4bfe9cc330 # Correlated data ID
+      description: time-resolved
+  comment: metadata test
+  metadata_format:
+    version: XAFS.20230126
+    schema_url: "https://raw.githubusercontent.com/xafs-db/xafs-schema/main/draft/20230126/xafs-schema.json"
+#    version_branch: AichiSR.202310126
+  measurement_methods:
+    - category: spectroscopy
+      sub_category: XAFS
+
+facility:
+  name: PF-AR
+  ring:
+    energy: 10000
+    energy_unit: GeV
+    filling_pattern: 4 bunch train X 84
+    filling_pattern_mode: A
+    start_current: 99.9
+    start_current_unit: mA
+    end_current: 99.8
+    end_current_unit: mA
+  light_source:
+    type: BM #(BM, U, W)
+    polarization: circular
+  beamline: BL-14B2
+
+files:
+  - filename: Cu_XAFS
+    description: experimental # (experimental, calibrated, corrected, thumbnail)
+    extension: dat
+    format: 9809
+    headerlines: 3 # Number of rows before measured data
+    template: blah # (optional)
+    columns:
+      - name: energy # Header name for each column, e.g., obs_angle, I0, energy, SDD_count
+        unit: eV
+        type: raw #(raw, processed)
+        additional_data: Uncalibrated
+      - name: I0
+        unit: counts
+        type: raw
+        additional_data: without filter
+        detection: transmission
+        reference_to_detector: I0
+      - name: mu_f
+        unit: a.u.
+        type: processed
+        additional_data: without filter
+        detection: fluorescence
+        reference_to_detector: (If1+If2+If3)/I0
+
+  - filename: Cu_XAFS
+    description: thumbnail
+    extension: png
+    format: image
+
+instrument:
+  arrangement: S1//M1//groove_entrance_slit//DCM//groove_exit_slit//S2 # The order of notation is from upstream to downstream. Separator is defined as "//".
+
+  monochromator:
+    name: DCM
+    distance: 4000 # distance from light source (facility-specific)
+    distance_unit: mm
+    type: DCM
+    scan_mode: quick scan
+    detail: # No distinction is made between monochromators and gratings. Select items as appropriate
+      crystal_material: Si
+      crystal_plane: 111
+      crystal_d: 1.63747
+      crystal_d_unit: angstrom
+      groove_deviation_angle:
+      groove_deviation_angle_unit:
+      groove_density:
+      groove_density_unit:
+      groove_depth:
+      groove_depth_unit:
+
+  mirrors:
+    - name: M1
+      distance: 3500
+      distance_unit: mm
+      role: higher-order-cut
+      type: double
+      angle: 4
+      angle_unit: mrad
+      coating: Rh
+      shape: flat
+
+  filters:
+    - name: F1
+      distance: 2000
+      distance_unit: mm
+      role: #  string
+      material: Be
+      thickness: 1
+      thickness_unit: mm
+
+  slits:
+    - name: S1
+      type: 4D-slit
+      distance: 1000
+      distance_unit: mm
+      vertical_size: 1
+      vertical_size_unit: mm
+      horizontal_size: 1
+      horizontal_size_unit: mm
+    - name: S2
+      type:
+      distance: 4000
+      distance_unit: mm
+      diameter: 2
+      diameter_unit: mm
+    - name: groove_entrance_slit
+      distance_unit: 1000 mm
+      vertical_size: 1
+      vertical_size_unit: mm
+      horizontal_size: 1
+      horizontal_size_unit: mm
+    - name: groove_exit_slit
+      distance_unit: 1000 mm
+      vertical_size: 1
+      vertical_size_unit: mm
+      horizontal_size: 1
+      horizontal_size_unit: mm
+
+measurement:
+  edges:
+    - element: Co
+      edge: L3-edge
+    - element: Co
+      edge: L2-edge
+
+  I0:
+    conversion_factor: 1.000000E+08 # Conversion from instrument output to photon counts
+    conversion_factor_unit: /pA
+    detector:
+      type: IC # Mesh
+      gases_number: 2 # Number of gas species
+      gases:
+        - name: N2
+          proportion: 50
+        - name: Ar
+          proportion: 50
+      manufacturer: OHYO KOKEN
+      model_number:
+      applied_voltage:
+        voltage: 1000
+        voltage_unit: V
+    ammeter:
+      gain: 10e6
+      gain_unit: V/A
+      manufacturer: KEITHLEY
+      model_number: "6514"
+    additional_data:
+
+  detectors:
+    - name: I1
+      arrangement: IC//Current Amp.//V/F Converter//Counter # Detecting and signal processing flow are described in order, separated by "//".
+      hardware:
+        # Common for hard-ware
+        type: IC
+        manufacturer: OHYO KOKEN KOGYO CO., LTD.
+        model_number: 18cm
+        # IC specific
+        gases_number: 2
+        gases:
+          - name: N2
+            proportion: 50
+          - name: Ar
+            proportion: 50
+        applied_voltage: 1500
+        applied_voltage_unit: V
+      processing_lines:
+        - conversion_factor: 1e8 # Conversion from instrument output to photon counts (per line)
+          conversion_factor_unit: /pA
+          processors:
+            - processor: Current Amp. # Module (processor) used in each step of signal processing
+              type: Average
+              manufacturer: NF
+              model_number: CA5350
+              gain: 1e6
+              gain_unit: V/A
+              time_constant: 1e-3
+              time_constant_unit: s
+            - processor: V/F Converter
+              type: Average
+              manufacturer: TSUJICON
+              model_number: D2VF-1H
+              gain: 1e8
+              gain_unit: Hz/V
+              unit_id: 2
+            - processor: Counter
+              type: Int
+              manufacturer: TSUJICON
+              model_number: ct32
+              unit_id: 18
+
+  measured_time:
+    start_time: "2019-01-22 13:43:15"
+    end_time: "2019-01-22 14:01:06"
+
+  energy_calibration:
+    standard_sample: alpha-Al2O3
+    calibration_position: white line peak maximum
+    energy: 1567.71
+    energy_unit: eV
+
+  tune:
+    type: single
+    angle: 46
+    angle_unit: deg
+    energy:
+    energy_unit:
+    ratio: 80
+    ratio_unit: "%"
+
+  section:
+    number: 7
+    blocks: # Details of blocked scanning range
+      - start: 1500
+        start_unit: eV
+        end: 1550
+        end_unit: eV
+        delta: 2.5
+        delta_unit: eV
+        wait_time: 1
+        wait_time_unit: s
+        dwell_time:
+        dwell_time_unit:
+        sampling_number: 21
+    data_points: 294 # Total number of data points
+
+  chamber_environment: He
+  additional_data: alpha-Al2O3
+
+sample:
+  chemical_formula: V2O5
+  name: vanadium (II) oxide
+  supplier: KOJUNDO KAGAKU
+  model_number: VVO03GB
+  lot_number: 1234567
+  CAS_number: 1314-62-1
+  identifier:
+    global_identifiers:
+      - global_identifier: CID:14814 # IDs in well-known external databases
+    local_identifiers:
+      - local_identifier: VO-00002 # ID used in the experimental group
+  phase: solid #(gas, solid, liquid)
+  purity: 3N
+  shape:
+    type: grains
+    size:
+      type: diameter #(diameter, radius, thickness)
+      value: 2.0
+      unit: mm
+  create_time: 2023-01-12 # 試料作成日付
+  condition:
+    temperature: # Only temperature has key-value as a required field. Others are generalized by "condition".
+      value: 300
+      unit: K
+    conditions:
+      - name: sample atmosphere # "condition" is formatted with type, value, unit, and additional_data.
+        types:
+          - type: atmosphere #(atmosphere, voltage, current, coordinate, optical, thermal, mechanical)
+        value: 0.2
+        unit: kPa
+        additional_data: Vacuum
+      - name: heater voltage
+        types:
+          - type: voltage
+          - type: thermal
+        value: 100
+        unit: V
+        additional_data:
+      - name: sample current
+        types:
+          - type: current
+        value: 0.1
+        unit: A
+        additional_data:
+      - name: incident_angle
+        types:
+          - type: coordinate
+          - type: optical
+        value: 0
+        unit: deg
+        additional_data:
+      - name: polarization
+        types:
+          - type: polarization
+          - type: optical
+        value: circular
+      - name: beam_position
+        types:
+          - type: coordinate
+          - type: optical
+        value: center of sample
+    additional_data: on carbon tape
+  additional_data:
+
+reference:
+  chemical_formula: V
+  name: vanadium
+  supplier: Sigma-Aldrich
+  model_number: 266205
+  lot_number: 987654
+  CAS_number: 7440-62-2
+  identifier:
+    global_identifiers:
+      - global_identifier: SID:24861892
+    local_identifier: V-00100
+  phase: solid
+  concentration: 99.7% trace metals basis
+  shape:
+    type: film
+    size:
+      type: diameter #(diameter, radius, thickness)
+      value: 0.25
+      unit: mm
+  create_time: 2023-01-12 # 試料作成日付
+  additional_data: 24.8-26.0 μΩ-cm, 20°C
+
+local:
+  additional_data: A
+  condition:
+    temperature:
+      ramping: 10
+      ramping_unit: min
