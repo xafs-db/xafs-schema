@@ -33,8 +33,7 @@
     "required":[
         "data_info",
         "facility",
-        "sample",
-        "reference"
+        "sample"
     ],
     "definitions":{
         "@data_info":{
@@ -414,7 +413,7 @@
             "description":"メタデータスキーマのURI\nURI of metadata schema",
             "title":"@data_info@metadata_format@schema_uri",
             "examples":[
-                "https://raw.githubusercontent.com/matumot/xafs-schema/main/draft/20230121/xafs-schema.json"
+                "https://raw.githubusercontent.com/xafs-db/xafs-schema/main/draft/20230127/xafs-schema.json"
             ]
         },
         "@data_info@metadata_format@version_branch":{
@@ -2719,7 +2718,7 @@
             "additionalProperties":false,
             "title":"@sample",
             "required":[
-                "contact_name"
+                "name"
             ]
         },
         "@sample@chemical_formula":{
@@ -2966,11 +2965,7 @@
                 }
             },
             "additionalProperties":false,
-            "title":"@sample@contact_name",
-            "required":[
-                "organization",
-                "name"
-            ]
+            "title":"@sample@contact_name"
         },
         "@sample@contact_name@organization":{
             "$id":"#key/@sample@contact_name@organization",
@@ -3199,10 +3194,7 @@
                 }
             },
             "additionalProperties":false,
-            "title":"@reference",
-            "required":[
-                "contact_name"
-            ]
+            "title":"@reference"
         },
         "@reference@chemical_formula":{
             "$id":"#key/@reference@chemical_formula",
@@ -3436,11 +3428,7 @@
                 }
             },
             "additionalProperties":false,
-            "title":"@reference@contact_name",
-            "required":[
-                "organization",
-                "name"
-            ]
+            "title":"@reference@contact_name"
         },
         "@reference@contact_name@organization":{
             "$id":"#key/@reference@contact_name@organization",
