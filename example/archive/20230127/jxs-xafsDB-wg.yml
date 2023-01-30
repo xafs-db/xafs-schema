@@ -27,7 +27,7 @@ data_info:
   metadata_format:
     version: XAFS.20230127
     schema_uri: "https://raw.githubusercontent.com/matumot/xafs-schema/main/draft/20230127/xafs-schema.json"
-#    version_branch: AichiSR.202310121
+#    version_branch: AichiSR.20230127
   measurement_methods:
     - category: spectroscopy
       sub_category: XAFS
