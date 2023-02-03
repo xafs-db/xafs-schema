@@ -286,7 +286,7 @@ sample:
       type: diameter #(diameter, radius, thickness)
       value: 2.0
       unit: mm
-  create_time: 2023-01-12 # 試料作成日付
+  create_time: "2023-01-12" # 試料作成日付
 
   contact_name:
     organization: Ritsumeikan
@@ -359,7 +359,7 @@ reference:
       type: diameter #(diameter, radius, thickness)
       value: 0.25
       unit: mm
-  create_time: 2023-01-12 # 試料作成日付
+  create_time: "2023-01-12" # 試料作成日付
   additional_data: 24.8-26.0 μΩ-cm, 20°C
 
 #  contact_name:
