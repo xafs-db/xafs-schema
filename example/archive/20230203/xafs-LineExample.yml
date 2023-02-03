@@ -1,0 +1,145 @@
+# measurement processing_line 例題集
+# @measurement@detectors 以下の配列で定義
+
+measurement: 
+  detectors:  
+  
+# 1. IC => 電流アンプ - V/F - カウンタ の場合
+  - name: I1
+    arrangement: ...//Current Amp.//V/F Converter//Counter
+    processing_lines:
+    - conversion_factor: 1e-14
+      conversion_factor_unit: A
+      processors:
+      - processor: Current Amp.
+        type: Average
+        manufacturer: NF
+        model_number: CA5350
+        gain: 1e6
+        gain_unit: V/A
+        time_constant: 1e-3
+        time_constant_unit: s
+      - processor: V/F Converter
+        type: Average
+        manufacturer: TSUJICON
+        model_number: D2VF-1H
+        gain: 1e8
+        gain_unit: Hz/V
+        unit_id: 2
+      - processor: Counter
+        type: Int
+        manufacturer: TSUJICON
+        model_number: ct32
+        unit_id: 18
+
+# 2. アナログな SSD/SDD => pre-amp => SCA => counter
+  - name: SSD
+    arrangement: ...//Pre-Amp.//Spectroscopy-Amp.//SCA//Counter
+    processing_lines:
+    - conversion_factor: 
+      conversion_factor_unit:
+      processors:
+      - processor: Pre-Amp.
+        type: Average
+        manufacturer: Mirion Technologies (Canberra) KK
+        gain: 1e6
+        gain_unit: V/A
+        time_constant: 1e-8
+        time_constant_unit: s
+      - processor: Spectroscopy-Amp.
+        type: 
+        manufacturer: Ortec
+        model_number: 575A
+        shaping_parameter:
+          peaking_time: 0.5e-6
+          peaking_time_unit: s
+      - processor: SCA
+        type: pulse height discriminator
+        manufacturer: Ortec
+        model_number:
+        ROI:
+          lower_limit: 1.3
+          upper_limit: 2.5
+          unit: V
+      - processor: Counter
+        type: Int.
+        manufacturer: TSUJICON
+        model_number: ct32
+        unit_id: 18
+
+# 3. セミデジタルな SSD/SDD => pre-amp => DSP => counter
+  - name: SSD
+    arrangement: ...//Pre-Amp.//DSP//Counter
+    processing_lines:
+    - conversion_factor: 
+      conversion_factor_unit: 
+      processors:
+      - processor: Pre-Amp.
+        type: Average
+        manufacturer: TechnoAP
+        gain:
+        gain_unit:
+        time_constant:
+        time_constant_unit:
+      - processor: DSP
+        type: MCA
+        manufacturer: TechnoAP
+        model_number: APN504X
+        shaping_parameter:
+          peaking_time: 0.5e-6
+          peaking_time_unit: s
+        ROI:
+          lower_limit: 125
+          upper_limit: 355
+          unit: bin
+        unit_id: 3
+      - processor: Counter
+        type: Int.
+        manufacturer: TSUJICON
+        model_number: ct32
+        unit_id: 18
+
+# 4. DSP 直読み SSD/SDD => pre-amp => DSP
+  - name: SSD
+    arrangement: ...//Pre-Amp.//DSP
+    processing_lines:
+    - conversion_factor:
+      conversion_factor_unit: 
+      processors:
+      - processor: Pre-Amp.
+        type: Average
+        manufacturer: TechnoAP
+        model_number:
+        gain:
+        gain_unit:
+        time_constant:
+        time_constant_unit:
+      - processor: DSP
+        type: MCA
+        manufacturer: TechnoAP
+        model_number: APN504X
+        shaping_parameter:
+          peaking_time: 0.5e-6
+          peaking_time_unit: s
+        ROI:
+          lower_limit: 125
+          upper_limit: 355
+          unit: bin
+        unit_id: 3
+
+# 5.imaging XAFS
+  - name: CCD
+    processing_lines:
+    - conversion_factor:
+      conversion_factor_unit: /count
+      processors:
+      - processor: CCD
+        type:
+        manufacturer:
+        model_number:
+        spatial_resolution: 10
+        spatial_resolution_unit: um
+        gain:
+        gain_unit: V/A
+        time_constant:
+        time_constant_unit:
