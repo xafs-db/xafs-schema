@@ -19,8 +19,8 @@ condaを利用した場合、以下の手順で行います。
 下記のようにメタデータ管理のエクセルファイルを指定してメタデータスキーマファイル (jsonshema)を作成します。
 
 ```
-(xafs-schema) >python gen_schema.py draft/20230127/metadata_schema-xafs.xlsx
-... input draft/20230127/metadata_schema-xafs.xlsx
+(xafs-schema) >python gen_schema.py draft/20230203/metadata_schema-xafs.xlsx
+... input draft/20230203/metadata_schema-xafs.xlsx
 ... output ./schema/xafs-schema.json
 ... output ./schema/xafs-schema-strict.json
 ```
