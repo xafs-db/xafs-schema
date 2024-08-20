@@ -28,7 +28,7 @@ Visual Studio Codeを起動し、左下の Extensionsをクリックし、左上
 ```
 {
     "yaml.schemas": {
-        "https://raw.githubusercontent.com/xafs-db/xafs-schema/main/draft/20230203/xafs-schema.json": [
+        "https://raw.githubusercontent.com/xafs-db/xafs-schema/main/release/20230203/xafs-schema.json": [
             "*xafs*.yml"
         ]
     }
@@ -40,7 +40,7 @@ Visual Studio Codeを起動し、左下の Extensionsをクリックし、左上
 ```
 {
     "yaml.schemas": {
-        "https://raw.githubusercontent.com/xafs-db/xafs-schema/main/draft/20230203/xafs-schema-strict.json": [
+        "https://raw.githubusercontent.com/xafs-db/xafs-schema/main/release/20230203/xafs-schema-strict.json": [
             "*xafs*.yml"
         ]
     }

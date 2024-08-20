@@ -19,10 +19,10 @@ condaを利用した場合、以下の手順で行います。
 config.yml に指定するスキーマファイル (or URL)を指定します。
 
 ```yaml
-schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/main/draft/20230203/xafs-schema.json
-#schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/main/draft/20230203/xafs-schema-strict.json
-#schema_path: ./draft/20230203/xafs-schema.json
-#schema_path: ./draft/20230203/xafs-schema-strict.json
+schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/release/draft/20230203/xafs-schema.json
+#schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/release/draft/20230203/xafs-schema-strict.json
+#schema_path: ./release/20230203/xafs-schema.json
+#schema_path: ./release/20230203/xafs-schema-strict.json
 ```
 
 各スキーマファイルは以下の仕様になっています。
@@ -41,8 +41,8 @@ schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/main/draft/20
 ```
 (xafs-schema)> check_schema.py example/metadata-xafs.yml
 ... input metadata: example/metadata-xafs.yml
-... schema path: ./draft/20230203/xafs-schema.json
-... get schema from ./draft/20230203/xafs-schema.json
+... schema path: ./release/20230203/xafs-schema.json
+... get schema from ./release/20230203/xafs-schema.json
 ... check example/metadata-xafs.yml: OK
 ```
 
@@ -53,8 +53,8 @@ schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/main/draft/20
 ```
 (xafs-schema)>python check_schema.py example/jxs-xafsDB-wg.yml
 ... input metadata: example/jxs-xafsDB-wg.yml
-... schema path: ./draft/20230203/xafs-schema.json
-... get schema from ./draft/20230203/xafs-schema.json
+... schema path: ./release/20230203/xafs-schema.json
+... get schema from ./release/20230203/xafs-schema.json
 ... check example/jxs-xafsDB-wg.yml: NG
  ==> Error()
      message = {

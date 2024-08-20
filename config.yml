@@ -1,4 +1,4 @@
-schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/main/draft/20230203/xafs-schema.json
-#schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/main/draft/20230203/xafs-schema-strict.json
+schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/main/release/20230203/xafs-schema.json
+#schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/main/release/20230203/xafs-schema-strict.json
 #schema_path: ./draft/20230203/xafs-schema.json
 #schema_path: ./draft/20230203/xafs-schema-strict.json
