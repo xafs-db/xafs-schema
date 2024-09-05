@@ -39,7 +39,7 @@ schema_path: https://raw.githubusercontent.com/xafs-db/xafs-schema/release/draft
 引数には対象となるメタデータファイル (YAML or Python)を指定します。
 
 ```
-(xafs-schema)> check_schema.py example/metadata-xafs.yml
+(xafs-schema)> python check_schema.py example/metadata-xafs.yml
 ... input metadata: example/metadata-xafs.yml
 ... schema path: ./release/20230203/xafs-schema.json
 ... get schema from ./release/20230203/xafs-schema.json
